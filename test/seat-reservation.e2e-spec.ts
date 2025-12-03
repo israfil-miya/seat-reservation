@@ -5,7 +5,6 @@ import { App } from 'supertest/types';
 import { AppModule } from './../src/app.module';
 import { PrismaService } from './../src/prisma/prisma.service';
 
-// Define interfaces for response bodies
 interface EventResponse {
     id: number;
     name: string;
