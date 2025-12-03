@@ -43,7 +43,7 @@ A robust REST API for managing event seat reservations, built with NestJS, Prism
    Create a `.env` file in the root directory and add your database connection string:
 
     ```env
-    DATABASE_URL="postgresql://user:password@localhost:5432/seat_reservation?schema=public"
+    DATABASE_URL="postgresql://example_user:example_password@aws-host.example.com:6543/seat_reservation?pgbouncer=true"
     ```
 
 4. Run database migrations:
@@ -68,21 +68,21 @@ pnpm run start:prod
 
 ### Events
 
-- **POST /events**
+- **POST /api/events**
     - Create a new event.
-    - Body: `{ "name": "Concert", "total_seats": 100 }`
+    - Body: `{ "name": "Concert", "totalSeats": 100 }`
 
-- **GET /events**
+- **GET /api/events**
     - List all events with their available seat count.
     - Query Params: `?available=true` (optional) to filter only events with available seats.
 
 ### Bookings
 
-- **POST /bookings/reserve**
+- **POST /api/bookings/reserve**
     - Reserve a seat for an event.
     - Body: `{ "eventId": 1, "userId": "user-123" }`
 
-- **POST /bookings/cancel**
+- **POST /api/bookings/cancel**
     - Cancel a reservation.
     - Body: `{ "eventId": 1, "userId": "user-123" }`
 
