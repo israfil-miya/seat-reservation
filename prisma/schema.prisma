@@ -1,0 +1,30 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  total_seats Int
+  bookings    Booking[]
+
+  @@map("events")
+  @@index([id, name])
+}
+
+model Booking {
+  id         Int      @id @default(autoincrement())
+  event_id   Int
+  user_id    String
+  created_at DateTime @default(now())
+  event      Event    @relation(fields: [event_id], references: [id])
+
+  @@unique([event_id, user_id])
+  @@index([event_id])
+  @@map("bookings")
+}
